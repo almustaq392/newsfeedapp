@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="prefetch" href="https://rpsthecoder.github.io/js-speech-synthesis/pause1.svg">
+<link rel="prefetch" href="https://rpsthecoder.github.io/js-speech-synthesis/stop1.svg">
+<link rel="prefetch" href="https://rpsthecoder.github.io/js-speech-synthesis/play1.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<style>
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+}
+#singlepost{
+  padding-left: 100px;
+  position: relative;
+}
+@media screen and (max-width: 800px) {
+  #singlepost{
+  padding-left: 50px;
+}
+}
+#singlepost1{
+  padding-left: 80px;
+}
+@media screen and (max-width: 800px) {
+  #singlepost1{
+  padding-left: 0px;
+}
+}
+
+.clearfix {
+  overflow: auto;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.green{
+  color: green;
+}
+
+.red{
+  color: red;
+}
+
+#HCB_comment_box textarea {
+
+width: 50% !important;
+}
+
+.home-desc{
+  color: white;
+}
+#HCB_comment_box #hcb_form .home-desc a, #HCB_comment_box .home-desc a:visited{
+  color: white !important;
+}
+#HCB_comment_box #hcb_form .hcb-door-in {
+    width: 0px !important;
+}
+#play {
+	background-image: url(https://rpsthecoder.github.io/js-speech-synthesis/play.svg);
+} 
+
+
+
+.buttons {
+  margin-top: 25px;
+}
+button{
+  background:none;
+}
+
+
+#play {
+  background-image: url(https://rpsthecoder.github.io/js-speech-synthesis/play.svg);
+  height: 48px;
+  padding: 0;
+  width: 48px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+#play.played {
+  background-image: url(https://rpsthecoder.github.io/js-speech-synthesis/play1.svg);
+}
+
+#pause {
+  background-image: url(https://rpsthecoder.github.io/js-speech-synthesis/pause.svg);
+  height: 48px;
+  padding: 0;
+  width: 48px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+#pause.paused {
+  background-image: url(https://rpsthecoder.github.io/js-speech-synthesis/pause1.svg);
+}
+
+#stop {
+  background-image: url(https://rpsthecoder.github.io/js-speech-synthesis/stop.svg);
+  height: 48px;
+  padding: 0;
+  width: 48px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+#stop.stopped {
+  background-image: url(https://rpsthecoder.github.io/js-speech-synthesis/stop1.svg);
+}
+
+
+  </style>
+<body>
+  
+    <%- include('../views/header.ejs') %> <br>   
+
+    <div class="container-fluid">
+      <div class="row" style="padding-left: 80px;">
+        <div class="col-md-3" style="width:380px;">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="<%=categories.post_image%>"  width="100px">
+                </div>
+                <div class="col-md-6">
+                  <p style="text-align: center; padding-top:20px;"><%- categories.title %></p>
+                </div>
+              </div>
+          
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3" style="width:380px;">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="<%=categories.post_image%>"  width="100px">
+                </div>
+                <div class="col-md-6">
+                  <p style="text-align: center; padding-top:20px;"><%- categories.title %></p>
+                </div>
+              </div>
+          
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3" style="width:380px;">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="<%=categories.post_image%>"  width="100px">
+                </div>
+                <div class="col-md-6">
+                  <p style="text-align: center; padding-top:20px;"><%- categories.title %></p>
+                </div>
+              </div>
+          
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3" style="width:380px;">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6">
+                  <img src="<%=categories.post_image%>"  width="100px">
+                </div>
+                <div class="col-md-6">
+                  <p style="text-align: center; padding-top:20px;"><%- categories.title %></p>
+                </div>
+              </div>
+          
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+
+    <br> <br>
+
+
+    <div class="container-fluid" id="singlepost">
+        <div class="row">
+          <div class="col-md-6" id="categories">
+           
+                <% if(categories != null) { %>
+                    <h2><%- categories.title %></h2> <br>
+                    <p> <span> <i class="fa fa-eye" style="font-size: 20px;"> views<%- categories. updated_by %></i></span>
+                       <span style="padding-left:20px"><i class="fa fa-calendar"  style="font-size: 20px;">  <%- categories.created_at %> </i></span>
+                       </p> 
+                    <img src="<%=categories.post_image%>"  width="100%"><br> <br>
+                    <p style="padding-left: 200px;"> 
+                    <i class="fa fa-facebook-f"  style="padding-left: 150px; font-size: 20px;"></i> 
+                    <i class="fa fa-twitter "  style="padding-left: 10px; font-size: 20px;"></i> 
+                    <i class="fa fa-linkedin"  style="padding-left: 10px; font-size: 20px;"></i> 
+                   <i class="fa fa-whatsapp" style="padding-left: 10px; font-size: 20px;"></i></p>
+                   <div class=buttons>
+                    <button id=play></button> &nbsp;
+                    <button id=pause></button> &nbsp;
+                    <button id=stop></button>
+                  </div>
+                   <article>
+                    <p id=""><%- categories.introtext %></p>
+                    <p id="text"><%- categories.content %></p>  </acrticle>
+                <% } else { %>
+                    No posts found.
+                <% } %>
+          </div>
+          <div class="col-md-6"  id="singlepost">
+
+            <img src="https://nammaooru.co/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fposter.e20c811f.jpg&w=384&q=75" class="rounded mx-auto d-block"><br>
+            <br> <br> 
+          
+          </div>
+        </div>
+      </div> 
+    
+      <section>
+        <div class="container">
+        <div id="HCB_comment_box">loading comments...</div>
+ <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />
+ <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=(""+window.location).replace(/'/g,"%27") || hcb_user.PAGE, h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24WvYLTZZ7ooBqwL4R73YSf."+"&opts=17374&num=10");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
+      
+      </div>
+</section>
+      <br><br>
+
+ 
+      <button class="btn btn-sm btn-primary rounded-circle position-fixed bottom-0 end-0 translate-middle d-none" onclick="scrollToTop()" id="back-to-up">
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+      </button>
+
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+      
+      
+
+
+<script>
+  window.onscroll = () => {
+  toggleTopButton();
+}
+function scrollToTop(){
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function toggleTopButton() {
+  if (document.body.scrollTop > 20 ||
+      document.documentElement.scrollTop > 20) {
+    document.getElementById('back-to-up').classList.remove('d-none');
+  } else {
+    document.getElementById('back-to-up').classList.add('d-none');
+  }
+}
+</script>
+
+
+<script>
+  // grab the UI elements to work with
+  onload = function() {
+	if ('speechSynthesis' in window) with(speechSynthesis) {
+
+		var playEle = document.querySelector('#play');
+		var pauseEle = document.querySelector('#pause');
+		var stopEle = document.querySelector('#stop');
+		var flag = false;
+
+		playEle.addEventListener('click', onClickPlay);
+		pauseEle.addEventListener('click', onClickPause);
+		stopEle.addEventListener('click', onClickStop);
+
+		function onClickPlay() {
+			if (!flag) {
+				flag = true;
+				utterance = new SpeechSynthesisUtterance(document.querySelector('article').textContent);
+				utterance.voice = getVoices()[0];
+				utterance.onend = function() {
+					flag = false;
+					playEle.className = pauseEle.className = '';
+					stopEle.className = 'stopped';
+				};
+				playEle.className = 'played';
+				stopEle.className = '';
+				speak(utterance);
+			}
+			if (paused) { /* unpause/resume narration */
+				playEle.className = 'played';
+				pauseEle.className = '';
+				resume();
+			}
+		}
+
+		function onClickPause() {
+			if (speaking && !paused) { /* pause narration */
+				pauseEle.className = 'paused';
+				playEle.className = '';
+				pause();
+			}
+		}
+
+		function onClickStop() {
+			if (speaking) { /* stop narration */
+				/* for safari */
+				stopEle.className = 'stopped';
+				playEle.className = pauseEle.className = '';
+				flag = false;
+				cancel();
+
+			}
+		}
+
+	}
+
+	else { /* speech synthesis not supported */
+		msg = document.createElement('h5');
+		msg.textContent = "Detected no support for Speech Synthesis";
+		msg.style.textAlign = 'center';
+		msg.style.backgroundColor = 'red';
+		msg.style.color = 'white';
+		msg.style.marginTop = msg.style.marginBottom = 0;
+		document.body.insertBefore(msg, document.querySelector('div'));
+	}
+
+}
+</script>
+
+
+    </body>
+</html> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

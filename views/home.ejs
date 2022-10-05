@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsfeed</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="519088402148-n881d3k73gu5d2bhuvar0cck3qjh54rc.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    
+</head>
+
+<style>
+  .inner-img {
+  transition: 0.3s;
+}
+
+.inner-img:hover {
+  transform: scale(1.1);
+}
+@keyframes scroll {
+  0% {
+    transform: translate(0,0)
+  }
+  100% {
+    transform: translate(-40%,0)
+  }
+}
+
+.marquee {
+  display: block;
+  width: 80%;
+  overflow: hidden;
+  white-space: nowrap;
+  color: red;
+}
+
+.marquee ul {
+  display:inline-block;
+  padding-left:100%;
+  animation: scroll 12s linear infinite
+}
+
+.marquee ul li {
+  display: inline;
+  margin-left: 40px;
+
+
+}
+
+.marquee ul li::after {
+  content: "";
+  display: inline-block;
+  background-color: red;
+  border-radius:100%;
+  padding: 5px;
+  margin-left: 15px;
+}
+
+.translated-ltr{margin-top:-40px;}
+.translated-ltr{margin-top:-40px;}
+.goog-te-banner-frame {display: none;margin-top:-20px;}
+
+.goog-logo-link {
+   display:none !important;
+} 
+
+.goog-te-gadget{
+   color: transparent !important;
+}
+
+.shadow7 {
+	 -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	 -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+	 box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+ .shadow7:before, .shadow7:after {
+	 content: "";
+	 position: absolute;
+	 z-index: -1;
+	 -webkit-box-shadow: 0 0 20px#F4BD0F;
+	 -moz-box-shadow: 0 0 20px#F4BD0F;
+	 box-shadow: 0 0 20px#F4BD0F;
+	 top: 0;
+	 bottom: 0;
+	 left: 10px;
+	 right: 10px;
+	 -moz-border-radius: 100px / 10px;
+	 border-radius: 100px / 10px;
+}
+ .shadow7:before:after, .shadow7:after:after {
+	 right: 10px;
+	 left: auto;
+	 -webkit-transform: skew(8deg) rotate(3deg);
+	 -moz-transform: skew(8deg) rotate(3deg);
+	 -ms-transform: skew(8deg) rotate(3deg);
+	 -o-transform: skew(8deg) rotate(3deg);
+	 transform: skew(8deg) rotate(3deg);
+}
+ 
+#example3 {
+  border: 1px solid;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+ box-shadow: #F4BD0F -5px 5px, #F4BD0F -10px 10px, #F4BD0F -15px 15px, #F4BD0F -10px 10px, #F4BD0F -0 0;
+ height:150px;
+}
+
+
+#rate{
+  padding-left: 522px;
+}
+
+@media (max-width: 600px) {
+  #rate{
+   display:none;
+}
+}
+@media (max-width: 600px) {
+  #todayrate1{
+  margin-left: 150px;
+  text-align:none;
+}
+}
+@media (max-width: 600px) {
+  #petrol{
+  padding-left:50px;
+}
+}
+@media (max-width: 600px) {
+  #fbpost{
+  padding-left:50px !important;
+}
+}
+#todayrate{
+  background-color: #F4BD0F; 
+  width: 150px; 
+  height:45px; 
+  font-family: Lora; 
+  font-size: 20px; 
+  font-weight: bold; 
+  padding-top: 5px; 
+  text-align: center;
+}
+#todayrate1{
+  background-color: #F4BD0F; 
+  width: 150px; height:45px; 
+  font-family: Lora; 
+  font-size: 20px; 
+  font-weight: bold; 
+  padding-top: 5px;
+}
+
+#fbpost{
+  padding-left: 250px;
+}
+</style>
+
+<body>
+ 
+   <%- include('../views/header.ejs') %>
+
+   
+ <!----> <div class="container-fluid">
+  <div class="row">
+   <div class="col-md-4" id="rate">
+    <div id="todayrate"> Today's Rate</div>
+  </div>
+    <div class="col-md-8">
+        
+  <div class="marquee"style="margin-left:40px;">
+    <ul>
+      <li>dummy!!!</li>
+      <li>newsfeed update</li>
+      <li>pondyworld</li>
+          <li>news updaated</li>
+      <li>information gather</li>
+      <li>technology  </li>
+          <li>news work  </li>
+      <li>hpy hpy</li>
+      <li>HAPPY HAPPY HAPPY</li>
+  </div>
+    </div>senthil is the best in the office 
+ 
+  </div>
+  </div>
+  <br>
+
+
+  <div class="container">
+<div class="row">
+  <div class="col-md-2">
+    <div class="card"  id="example3" >
+      <div class="card-body" STYLE="text-align: center;">
+        <div id="todayrate1"> Today's Rate</div>
+        <div id="petrol">Petrol $79</div>
+        <div id="petrol">Diesel $150/L</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <div class="shadow p-3 mb-5 bg-body rounded" style="height: 220px;">
+      <div class="row">  
+      <div class="col-md-4">
+        <img src="https://img.brainkart.com/imagebk37/rt60XLn.jpg" alt="" width="" height="200"> 
+        
+      </div>
+      <div class="col-md-6" style="text-align: center; padding-top: 60px; font-size:20px;">
+        அகர முதல எழுத்தெல்லாம் ஆதி 
+        பகவன் முதற்றே உலகு 
+      </div>
+
+      </div>
+     
+
+    </div>
+  </div>
+  <div class="col-md-2" >
+    <div class="card" id="example3" >
+      <div class="card-body" style="text-align: center;">
+     <div id="todayrate1"> Today's Rate</div>
+        <div id="petrol" >Petrol $79</div>
+        <div id="petrol">Diesel $150/L</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div> <br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <div>
+     <iframe width="100%" height="450" src="https://www.youtube.com/embed/hJjAO3TY_Mg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  <div class="col-md-4" id="fbpost">
+      <div id="fb-root"></div>
+      <div class="fb-like-box"
+       data-href="https://www.facebook.com/namapondicherry/"
+       data-width="292" 
+       data-show-faces="false" 
+       data-header="true" 
+       data-stream="true" 
+       data-show-border="true">
+      </div> 
+    </div>
+  </div>
+</div>
+<br>
+
+
+
+  
+    <% categories.forEach(function(categories,index){ %> 
+     
+    <div class="shadow-sm p-3 mb-5 bg-white rounded">
+      <h4><%= categories.name%></h4>
+    <div id="owl-carousel" class="owl-carousel">
+      <% categories.posts.forEach(function(posts,index){ %> 
+      <div class="item">
+        <a href="/details/<%=posts.id %>">   <img src="<%=posts.post_image%>" style="width:420px; height:330px;" class="inner-img"><br> </a>
+      <h3>  <a href="/details/<%=posts.id %>"> <%= posts.title %>   </a> </h3>
+      </div>
+    
+      <%}) %>    
+    </div>
+    </div>
+    <%}) %>    
+  </div> 
+
+   <!-- Modal -->
+ <!--- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel">Login</h4>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="POST" action="send">
+            <div class="row register-form">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="First Name *"
+                            name="firstname" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Your Email *" name="email"
+                            required />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Last Name *"
+                            name="lastname" required />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Enter Your Answer *"
+                            name="phone" required />
+                    </div>
+                    <input type="submit" class="btnRegister" value="Register" />
+                </div>
+        </form>
+        </div>
+       
+      </div>
+    </div>
+  </div> -->
+
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+     <script>
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        }
+
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function() {
+                console.log('User signed out.');
+            });
+        }
+    </script>
+
+  <button class="btn btn-sm btn-primary rounded-circle position-fixed bottom-0 end-0 translate-middle d-none" onclick="scrollToTop()" id="back-to-up">
+    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+  </button> >
+  <%- include('../views/footer.ejs') %>  
+ 
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+    }
+    </script>
+    
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+<!-- custom JS code after importing jquery and owl -->
+<script type="text/javascript">
+  $('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:13,
+    nav:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:2
+        },
+        1000:{
+            items:4
+        }
+    }
+})
+   
+</script>
+
+
+<script>
+  window.onscroll = () => {
+  toggleTopButton();
+}
+function scrollToTop(){
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function toggleTopButton() {
+  if (document.body.scrollTop > 20 ||
+      document.documentElement.scrollTop > 20) {
+    document.getElementById('back-to-up').classList.remove('d-none');
+  } else {
+    document.getElementById('back-to-up').classList.add('d-none');
+  }
+}
+</script>
+
+<script>
+  (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+</body>
+
+</html> 
+
+
+
+
+
+
+  

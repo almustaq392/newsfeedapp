@@ -1,0 +1,131 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<style>
+.navbar-dark .navbar-nav .nav-link {
+    color: white;
+}
+
+
+a:hover {
+  color: blue;
+ 
+}
+#category{
+  font-size: 20px;
+
+}
+.inner-img {
+  transition: 0.3s;
+}
+
+.inner-img:hover {
+  transform: scale(1.1);
+}
+p{
+  font-family: Lora;
+  font-size: 20px;
+
+}
+</style>
+<body>
+ 
+ 
+    <%- include('../views/header.ejs') %>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2"> <br> <br>
+        <div class="card">
+          <div class="">
+            <img src="https://nammaooru.co/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fposter.e20c811f.jpg&w=384&q=75" class="rounded mx-auto d-block">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-10">
+        <div class="row">
+          
+   <%categories.forEach(function(categories,index){ %>  
+          <div class="col-lg-3">
+            <div class="" style="width: 23rem; margin-top: 10%;">
+              <div class="card-body">
+             <a href="/details/<%=categories.id %>"> <img src="<%=categories.post_image%>"   width="320" height="200" class="inner-img"></a>  
+
+           <br>  <br>
+               <p class="card-text text-center"><a href="/details/<%=categories.id %>"><%=categories.title %></a></p>
+              
+              </div>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+       
+        </div>
+      </div>
+      
+    </div>
+
+
+  <br> <br>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Mobile Number</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-sm btn-primary rounded-circle position-fixed bottom-0 end-0 translate-middle d-none" onclick="scrollToTop()" id="back-to-up">
+    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+  </button>
+
+  <%- include('../views/footer.ejs') %>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
+  <script>
+    window.onscroll = () => {
+    toggleTopButton();
+  }
+  function scrollToTop(){
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+  
+  function toggleTopButton() {
+    if (document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20) {
+      document.getElementById('back-to-up').classList.remove('d-none');
+    } else {
+      document.getElementById('back-to-up').classList.add('d-none');
+    }
+  }
+  </script>
+</body>
+</html>
+
+
+
